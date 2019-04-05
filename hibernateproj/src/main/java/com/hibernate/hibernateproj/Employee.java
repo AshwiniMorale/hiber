@@ -1,8 +1,14 @@
 package com.hibernate.hibernateproj;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Employee
 {
+	@Id
 	int id;
+	@Column
 	String name;
 	public int getId() {
 		return id;

@@ -7,18 +7,29 @@ import org.hibernate.cfg.Configuration;
 
 public class Client {
 
-	public static void main(String[] args)
+	//public void save1(int id, String name) method for servlet
+	public void save1(Employee emp) 
 	{
+	     System.out.println("Save() calles");
 	     Configuration cfg = new Configuration();
-	     cfg.configure("hibernate.cfg.xml");
-	     SessionFactory factory = cfg.buildSessionFactory();
-	     Session session = factory.openSession();
+	     cfg.configure();
+	     SessionFactory factory =null;
+	     Session session=null;
+	     try
+	     {
+	    	 factory = cfg.buildSessionFactory();
+	    	 session = factory.openSession();
+	     }catch (Exception e) {
+	    	 System.out.println(e);
+	     }
 	     Transaction tx = session.beginTransaction();
-	     Employee e1=new Employee();    
-	     e1.setId(101);    
-	     e1.setName("Ganesh");        
-	         
-	     session.save(e1);  
+	     System.out.println("Transection Begin");
+	    /* code for servlet
+	      Employee e1=new Employee();    
+	     e1.setId(id);     
+	     e1.setName(name);        
+	    */     
+	     session.save(emp);  
 	     System.out.println("Object saved successfully.....!!");
 	     tx.commit();
 	     session.close();
